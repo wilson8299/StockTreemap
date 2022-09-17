@@ -9,7 +9,7 @@
 ## Download
 Download win-x64：[![](https://img.shields.io/badge/win_x64-v1.0.0.0-blue.svg?style=for-the-badge)](https://github.com/wilson8299/StockTreemap/releases/download/Release/StockTreemap-win-x64.exe)
 
-Download linux-x64：[![](https://img.shields.io/badge/liunx_x64-v1.0.0.0-blue.svg?style=for-the-badge)](https://github.com/wilson8299/StockTreemap/releases/download/Release/StockTreemap-linux-x64)
+Download linux-x64：[![](https://img.shields.io/badge/linux_x64-v1.0.0.0-blue.svg?style=for-the-badge)](https://github.com/wilson8299/StockTreemap/releases/download/Release/StockTreemap-linux-x64)
 
 Download osx-x64：[![](https://img.shields.io/badge/osx_x64-v1.0.0.0-blue.svg?style=for-the-badge)](https://github.com/wilson8299/StockTreemap/releases/download/Release/StockTreemap-osx-x64)
 
