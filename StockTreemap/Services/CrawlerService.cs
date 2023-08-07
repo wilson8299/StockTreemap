@@ -10,7 +10,7 @@ namespace StockTreemap.Services
 {
     public class CrawlerService
     {
-        public async Task<Tuple<IEnumerable<Category>, IEnumerable<Stock>>> GetStockInfo()
+        public async Task<Tuple<List<Category>, List<Stock>>> GetStockInfo()
         {
             var price = await SendRequest("https://www.wantgoo.com/investrue/all-quote-info");
             var info = await SendRequest("https://www.wantgoo.com/investrue/all-alive");
@@ -22,7 +22,7 @@ namespace StockTreemap.Services
                     CategoryId = p.id.Value,
                     Name = info.Where(i => i.id.Value == p.id.Value).Select(i => i.name.Value).FirstOrDefault(),
                     ChangePercent = ((p.close.Value - p.flat.Value) / p.flat.Value * 100)
-                });
+                }).ToList();
  
             var stockList = price
                 .Where(p => p.id.Value.Substring(0, 1) != "#")
@@ -34,9 +34,9 @@ namespace StockTreemap.Services
                     Price = p.close.Value,
                     Change = (p.close.Value - p.flat.Value),
                     ChangePercent = ((p.close.Value - p.flat.Value) / p.flat.Value * 100)
-                });
+                }).ToList();
 
-            stockCategory = stockCategory.Where(c => stockList.Any(s => s.CategoryId == c.CategoryId));
+            stockCategory = stockCategory.Where(c => stockList.Any(s => s.CategoryId == c.CategoryId)).ToList();
 
             return Tuple.Create(stockCategory, stockList);
         }

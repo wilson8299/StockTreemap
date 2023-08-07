@@ -37,11 +37,15 @@ namespace StockTreemap
             var treemapService = new TreemapService();
 
             var crawler = await crawlerService.GetStockInfo();
-            var treemap = treemapService.Create(width, height, crawler.Item1.ToList(), crawler.Item2.ToList());
+            var stockCategory = crawler.Item1;
+            var stockList = crawler.Item2;
+            var treemap = treemapService.Create(width, height, stockCategory, stockList);
             new RenderService().CreateImg(width, height, imageName, savePath, treemap);
 
             _active = false;
-            Console.WriteLine("Done");
+            Console.WriteLine("");
+            Console.WriteLine("完成");
+            Console.ReadKey();
         }
 
         private static bool _active = true;
@@ -49,13 +53,13 @@ namespace StockTreemap
         {
             Task.Run(() =>
             {
-                Console.WriteLine("Loading ");
+                Console.WriteLine("處理中");
                 Console.CursorVisible = false;
                 while (_active)
                 {
                     foreach (var frame in frames)
                     {
-                        Console.SetCursorPosition(9, Console.CursorTop - 1);
+                        Console.SetCursorPosition(10, Console.CursorTop - 1);
                         Console.WriteLine (frame);
                         Thread.Sleep(300);
                     }
