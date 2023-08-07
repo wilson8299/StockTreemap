@@ -23,7 +23,7 @@ namespace StockTreemap.Services
                     Name = info.Where(i => i.id.Value == p.id.Value).Select(i => i.name.Value).FirstOrDefault(),
                     ChangePercent = ((p.close.Value - p.flat.Value) / p.flat.Value * 100)
                 });
-
+ 
             var stockList = price
                 .Where(p => p.id.Value.Substring(0, 1) != "#")
                 .Select(p => new Stock()
@@ -35,6 +35,8 @@ namespace StockTreemap.Services
                     Change = (p.close.Value - p.flat.Value),
                     ChangePercent = ((p.close.Value - p.flat.Value) / p.flat.Value * 100)
                 });
+
+            stockCategory = stockCategory.Where(c => stockList.Any(s => s.CategoryId == c.CategoryId));
 
             return Tuple.Create(stockCategory, stockList);
         }
